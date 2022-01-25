@@ -16,9 +16,5 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies ++= Seq(evolutions, jdbc)
-
-// Adds additional packages into Twirl
-//TwirlKeys.templateImports += "adnan.controllers._"
-
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "adnan.binders._"
