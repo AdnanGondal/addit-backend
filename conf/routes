@@ -12,3 +12,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 # API
 
 GET /api/stories controllers.ApiController.listStories()
+POST /api/story controllers.ApiController.addStory()

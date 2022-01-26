@@ -2,6 +2,7 @@ package models
 
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import play.api.mvc.{AbstractController, ControllerComponents}
+import slick.ast.ColumnOption.AutoInc
 import slick.jdbc.{GetResult, JdbcProfile}
 
 import java.util.Date
@@ -19,7 +20,7 @@ class StoryDAO @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
 
 
   private class StoriesTable(tag: Tag) extends Table[Story](tag,"stories") {
-    def id = column[Int]("id",O.PrimaryKey)
+    def id = column[Int]("id",O.PrimaryKey,AutoInc)
     def title = column[String]("title")
     def url = column[String]("url")
 
@@ -42,4 +43,7 @@ class StoryDAO @Inject() (protected val dbConfigProvider: DatabaseConfigProvider
                                       |    ORDER BY score DESC;""".stripMargin.as[StoryWithScore]
 
   def allWithScore(): Future[Vector[StoryWithScore]] = db.run(storiesWithScore)
+
+  def insert(story: Story): Future[Unit] = db.run(stories
+  += story).map {_ => ()}
 }
