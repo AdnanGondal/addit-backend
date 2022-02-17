@@ -1,11 +1,28 @@
-# Addit-backend
+Reactivemongo for Play 2.8 Example
+=======================
+This is a Play CRUD Example using reactiveMongo driver. It demontrates:
+<ul>
+<li>MongoDb Connection using reactiveMongoDb in Play</li>
+<li>BSONReader and BSONWriter Implementation</li>
+<li>CRUD using different data type</li>
+</ul>
 
-This repository contains the backend for [Addit](https://github.com/AdnanGondal/addit).
+This example use the following:
+<ul>
+<li>Play Framework 2.8.0</li>
+<li>Reactive Scala Driver for MongoDB 0.20.13-play28</li>
+<li>Scala 2.13.3</li>
+<li>Mongodb</li>
+</ul>
 
-| uri                    | Method | comment                             | status                      |
-| ---------------------- | ------ | ----------------------------------- | --------------------------- |
-| /api/stories           | GET    | get all the stories in the database | DONE                        |
-| /api/story             | POST   | post a new story                    | DONE (needs authentication) |
-| /api/stories/:id/votes | POST   | add a vote for a given story        | TODO                        |
-| /api/users             | POST   | register a new user                 | TODO                        |
-| /api/sessions          | POST   | login a user                        | TODO                        |
+### How to run
+Setup a local mongo server using docker:
+```shell script
+mkdir ~/data
+docker run --name local-mongodb -d -p 27017:27017 -v ~/data:/data/db mongo
+```
+Test and run the application:
+```shell script
+sbt test
+sbt run
+```
